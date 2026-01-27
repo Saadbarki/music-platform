@@ -1,0 +1,20 @@
+{
+  "name": "web-shell-ui-social-share",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/shell/ui/social-share/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/shell/ui/social-share"],
+      "options": {
+        "jestConfig": "libs/web/shell/ui/social-share/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:ui", "scope:web"]
+}

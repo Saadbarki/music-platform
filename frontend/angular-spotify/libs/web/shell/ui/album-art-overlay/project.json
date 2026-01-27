@@ -1,0 +1,20 @@
+{
+  "name": "web-shell-ui-album-art-overlay",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/shell/ui/album-art-overlay/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/shell/ui/album-art-overlay"],
+      "options": {
+        "jestConfig": "libs/web/shell/ui/album-art-overlay/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:ui", "scope:web"]
+}

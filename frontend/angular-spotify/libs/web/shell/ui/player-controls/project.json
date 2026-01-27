@@ -1,0 +1,13 @@
+{
+  "name": "web-shell-ui-player-controls",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/shell/ui/player-controls/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["type:ui", "scope:web"]
+}

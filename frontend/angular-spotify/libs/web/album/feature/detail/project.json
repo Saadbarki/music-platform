@@ -1,0 +1,20 @@
+{
+  "name": "web-album-feature-detail",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/album/feature/detail/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/album/feature/detail"],
+      "options": {
+        "jestConfig": "libs/web/album/feature/detail/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:feature", "scope:web"]
+}

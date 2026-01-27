@@ -1,0 +1,13 @@
+{
+  "name": "web-shared-directives-click-stop-propagation",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/shared/directives/click-stop-propagation/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["type:util", "scope:web"]
+}

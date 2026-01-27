@@ -1,0 +1,20 @@
+{
+  "name": "web-shell-ui-nav-links",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/shell/ui/nav-links/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/shell/ui/nav-links"],
+      "options": {
+        "jestConfig": "libs/web/shell/ui/nav-links/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:ui", "scope:web"]
+}

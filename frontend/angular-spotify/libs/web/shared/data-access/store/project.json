@@ -1,0 +1,19 @@
+{
+  "name": "web-shared-data-access-store",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/shared/data-access/store/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/shared/data-access/store"],
+      "options": {
+        "jestConfig": "libs/web/shared/data-access/store/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:data-access", "scope:web"]
+}

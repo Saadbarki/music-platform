@@ -1,0 +1,19 @@
+{
+  "name": "web-shared-app-config",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/shared/app-config/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/shared/app-config"],
+      "options": {
+        "jestConfig": "libs/web/shared/app-config/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:util", "scope:web"]
+}

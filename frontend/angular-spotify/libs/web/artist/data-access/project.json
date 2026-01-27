@@ -1,0 +1,20 @@
+{
+  "name": "web-artist-data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/artist/data-access/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/artist/data-access"],
+      "options": {
+        "jestConfig": "libs/web/artist/data-access/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:data-access", "scope:web"]
+}

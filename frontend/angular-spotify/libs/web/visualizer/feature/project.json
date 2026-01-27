@@ -1,0 +1,20 @@
+{
+  "name": "web-visualizer-feature",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/visualizer/feature/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/visualizer/feature"],
+      "options": {
+        "jestConfig": "libs/web/visualizer/feature/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:feature", "scope:web"]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "web-artist-ui-artist-top-tracks",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/artist/ui/artist-top-tracks/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/artist/ui/artist-top-tracks"],
+      "options": {
+        "jestConfig": "libs/web/artist/ui/artist-top-tracks/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:ui", "scope:web"]
+}

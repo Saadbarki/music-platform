@@ -1,0 +1,13 @@
+{
+  "name": "web-playlist-feature-detail",
+  "$schema": "../../../../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "library",
+  "sourceRoot": "libs/web/playlist/feature/detail/src",
+  "prefix": "as",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  },
+  "tags": ["type:feature", "scope:web"]
+}

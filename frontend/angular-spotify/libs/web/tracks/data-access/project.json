@@ -1,0 +1,19 @@
+{
+  "name": "web-tracks-data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/tracks/data-access/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/tracks/data-access"],
+      "options": {
+        "jestConfig": "libs/web/tracks/data-access/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:data-access", "scope:web"]
+}

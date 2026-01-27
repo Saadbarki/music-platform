@@ -1,0 +1,19 @@
+{
+  "name": "web-home-data-access",
+  "$schema": "../../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/web/home/data-access/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    },
+    "test": {
+      "executor": "@nx/jest:jest",
+      "outputs": ["{workspaceRoot}/coverage/libs/web/home/data-access"],
+      "options": {
+        "jestConfig": "libs/web/home/data-access/jest.config.js"
+      }
+    }
+  },
+  "tags": ["type:data-access", "scope:web"]
+}
