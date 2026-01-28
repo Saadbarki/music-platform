@@ -15,29 +15,29 @@ jobs:
     name: Build and Deploy Angular Frontend
 
     steps:
-      # Step 1: Checkout repo
+      # Step 1: Checkout the repository
       - uses: actions/checkout@v3
 
-      # Step 2: Setup Node.js
+      # Step 2: Set up Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      # Step 3: Install dependencies (skip Husky in CI)
+      # Step 3: Install dependencies
       - name: Install Dependencies
         working-directory: ./frontend/angular-spotify
         run: npm install --legacy-peer-deps
         env:
-          HUSKY: 0
-          CI: true
+          HUSKY: 0   # <--- Disable Husky in CI
+          CI: true   # <--- Standard in CI to avoid interactive prompts
 
-      # Step 4: Build Angular app
+      # Step 4: Build the Angular app
       - name: Build Angular App
         working-directory: ./frontend/angular-spotify
         run: npm run build -- --output-path=dist/angular-spotify
 
-      # Step 5: Deploy to Azure Static Web App
+      # Step 5: Deploy to Azure Static Web Apps
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
         with:
