@@ -12,29 +12,37 @@ on:
 jobs:
   build_and_deploy_job:
     runs-on: ubuntu-latest
-    name: Build and Deploy Job
+    name: Build and Deploy Angular Frontend
+
     steps:
+      # Step 1: Checkout the repo
       - uses: actions/checkout@v3
 
+      # Step 2: Setup Node.js 20
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '20'
 
-      - name: Install Dependencies (ignore peer conflicts)
+      # Step 3: Install dependencies (skip Husky and legacy-peer-deps)
+      - name: Install Dependencies
+        working-directory: ./frontend/angular-spotify
         run: npm install --legacy-peer-deps
-        working-directory: ./frontend/angular-spotify
+        env:
+          HUSKY_SKIP_INSTALL: 1
 
+      # Step 4: Build the Angular app
       - name: Build Angular App
-        run: npm run build -- --prod
         working-directory: ./frontend/angular-spotify
+        run: npm run build -- --output-path=dist/angular-spotify
 
+      # Step 5: Deploy to Azure Static Web App
       - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }} # GitHub token
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # GitHub token for PRs
           action: "upload"
-          app_location: "frontend/angular-spotify"
+          app_location: "frontend/angular-spotify" # Location of your Angular project
           output_location: "frontend/angular-spotify/dist/angular-spotify"
-          api_location: "backend/MusicService" # optional if you have a .NET API
+          skip_app_build: true  # We already built it manually
