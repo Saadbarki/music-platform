@@ -5,56 +5,39 @@ on:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened, closed]
     branches:
       - main
 
 jobs:
-  build_and_deploy_job:
-    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
+  build_and_deploy:
     runs-on: ubuntu-latest
     name: Build and Deploy Angular Frontend
 
     steps:
-      - name: Checkout Code
+      - name: Checkout repository
         uses: actions/checkout@v4
-        with:
-          submodules: true
-          lfs: false
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-          cache: 'npm'
-          cache-dependency-path: frontend/angular-spotify/package-lock.json
 
-      - name: Install Dependencies
-        run: npm install --legacy-peer-deps
-        working-directory: frontend/angular-spotify
-        env:
-          HUSKY: 0 # Crucial: Disables Husky to prevent the ".git can't be found" error
+      - name: Install Dependencies (skip Husky, force legacy peer deps)
+        run: |
+          git config --global --add safe.directory $GITHUB_WORKSPACE
+          npm set-script postinstall "echo Husky skipped in CI"
+          npm install --legacy-peer-deps
+        working-directory: ./frontend/angular-spotify
 
-      - name: Build and Deploy
-        id: builddeploy
+      - name: Build Angular App
+        run: npm run build --prod
+        working-directory: ./frontend/angular-spotify
+
+      - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          ###### Location Settings ######
-          app_location: "frontend/angular-spotify" # Path to your app code
-          api_location: "" # Path to your API code (leave empty if none)
-          output_location: "dist/angular-spotify" # Path to your build output
-          ###### End Location Settings ######
-
-  close_pull_request_job:
-    if: github.event_name == 'pull_request' && github.event.action == 'closed'
-    runs-on: ubuntu-latest
-    name: Close Pull Request Job
-    steps:
-      - name: Close Pull Request
-        uses: Azure/static-web-apps-deploy@v1
-        with:
-          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          action: "close"
+          app_location: "frontend/angular-spotify"
+          output_location: "frontend/angular-spotify/dist/angular-spotify"
