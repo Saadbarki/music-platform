@@ -5,7 +5,7 @@ on:
     branches:
       - main
   pull_request:
-    types: [opened, synchronize, reopened, closed]
+    types: [opened, synchronize, reopened]
     branches:
       - main
 
@@ -15,32 +15,38 @@ jobs:
     name: Build and Deploy Angular Frontend
 
     steps:
-      # 1. Checkout your repo
-      - name: Checkout Repository
+      # 1️⃣ Checkout your repository
+      - name: Checkout Code
         uses: actions/checkout@v4
+        with:
+          submodules: true
+          lfs: false
 
-      # 2. Setup Node.js
+      # 2️⃣ Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      # 3. Install dependencies (skip Husky & fix peer deps)
+      # 3️⃣ Install dependencies (skip Husky)
       - name: Install Dependencies
-        run: HUSKY=0 npm install --legacy-peer-deps
         working-directory: ./frontend/angular-spotify
+        run: npm install --legacy-peer-deps
+        env:
+          HUSKY: 0
 
-      # 4. Build Angular app
+      # 4️⃣ Build Angular app
       - name: Build Angular App
-        run: npm run build -- --prod
         working-directory: ./frontend/angular-spotify
+        run: npm run build -- --prod
 
-      # 5. Deploy to Azure Static Web Apps
-      - name: Deploy to Azure Static Web App
+      # 5️⃣ Deploy to Azure Static Web Apps
+      - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           action: "upload"
-          app_location: "frontend/angular-spotify"
+          app_location: "frontend/angular-spotify"   # root of your Angular app
+          api_location: ""                           # no backend here, set if needed
           output_location: "frontend/angular-spotify/dist/angular-spotify"
