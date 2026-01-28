@@ -22,15 +22,16 @@ jobs:
         with:
           node-version: '20'
 
-      - name: Install Dependencies (skip Husky, force legacy peer deps)
-        run: npm install --legacy-peer-deps
+      - name: Disable Husky and Install Dependencies
+        run: |
+          export HUSKY=0
+          npm install --legacy-peer-deps
         working-directory: ./frontend/angular-spotify
         env:
-          HUSKY: "0"        # disables husky in CI
-          CI: "true"        # sets CI mode
+          CI: "true"
 
       - name: Build Angular App
-        run: npm run build --prod
+        run: npm run build -- --prod
         working-directory: ./frontend/angular-spotify
 
       - name: Deploy to Azure Static Web Apps
