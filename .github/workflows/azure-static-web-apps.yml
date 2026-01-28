@@ -5,6 +5,7 @@ on:
     branches:
       - main
   pull_request:
+    types: [opened, synchronize, reopened, closed]
     branches:
       - main
 
@@ -14,27 +15,28 @@ jobs:
     name: Build and Deploy Angular Frontend
 
     steps:
-      - name: Checkout repository
+      # 1. Checkout your repo
+      - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # 2. Setup Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20'
 
-      - name: Disable Husky and Install Dependencies
-        run: |
-          export HUSKY=0
-          npm install --legacy-peer-deps
+      # 3. Install dependencies (skip Husky & fix peer deps)
+      - name: Install Dependencies
+        run: HUSKY=0 npm install --legacy-peer-deps
         working-directory: ./frontend/angular-spotify
-        env:
-          CI: "true"
 
+      # 4. Build Angular app
       - name: Build Angular App
         run: npm run build -- --prod
         working-directory: ./frontend/angular-spotify
 
-      - name: Deploy to Azure Static Web Apps
+      # 5. Deploy to Azure Static Web Apps
+      - name: Deploy to Azure Static Web App
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
