@@ -23,11 +23,11 @@ jobs:
           node-version: '20'
 
       - name: Install Dependencies (skip Husky, force legacy peer deps)
-        run: |
-          git config --global --add safe.directory $GITHUB_WORKSPACE
-          npm set-script postinstall "echo Husky skipped in CI"
-          npm install --legacy-peer-deps
+        run: npm install --legacy-peer-deps
         working-directory: ./frontend/angular-spotify
+        env:
+          HUSKY: "0"        # disables husky in CI
+          CI: "true"        # sets CI mode
 
       - name: Build Angular App
         run: npm run build --prod
