@@ -1,0 +1,11 @@
+{
+  "$schema": "https://aka.ms/azure/static-web-apps-cli/schema",
+  "configurations": {
+    "angular-spotify": {
+      "appLocation": "dist/apps/angular-spotify",
+      "outputLocation": ".",
+      "appName": "angular-spotify",
+      "resourceGroup": "angular-spotify-rg"
+    }
+  }
+}

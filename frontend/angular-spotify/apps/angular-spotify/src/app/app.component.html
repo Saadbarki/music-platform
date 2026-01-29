@@ -1,0 +1,9 @@
+<h1>Spotify Songs</h1>
+<ul>
+  <li *ngFor="let song of songs">
+    <strong>{{ song.title }}</strong> by {{ song.artist }}
+    <audio *ngIf="song.blobUrl" controls>
+      <source [src]="song.blobUrl" type="audio/mpeg" />
+    </audio>
+  </li>
+</ul>
