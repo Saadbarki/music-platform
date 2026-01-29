@@ -9,7 +9,6 @@
   },
   "scripts": {
     "ng": "nx",
-    "postinstall": "husky install",
     "nx": "nx",
     "start": "nx serve",
     "build": "nx build",
