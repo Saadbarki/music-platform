@@ -138,3 +138,4 @@
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.pdb
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.genruntimeconfig.cache
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/ref/MusicService.dll
+/home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.sourcelink.json
