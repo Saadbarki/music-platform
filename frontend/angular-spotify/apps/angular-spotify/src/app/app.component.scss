@@ -1,3 +1,26 @@
+.song-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.song-card {
+  background: #121212;
+  color: #fff;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.album-cover {
+  width: 100%;
+  border-radius: 5px;
+}
+
+.song-info {
+  margin-top: 10px;
+}
 :host {
   @apply w-full h-full;
   z-index: 0;

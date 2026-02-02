@@ -1,0 +1,125 @@
+<!-- Sidebar -->
+<app-sidebar></app-sidebar>
+
+<!-- Main Content -->
+<div class="ml-64 min-h-screen pb-24 p-8">
+  
+  <!-- Header with Search -->
+  <div class="mb-8">
+    <h1 class="text-4xl font-bold mb-6">Good Evening</h1>
+    
+    <!-- Search Bar -->
+    <app-search-bar></app-search-bar>
+  </div>
+  
+  <!-- Recently Played Section -->
+  <section class="mb-10">
+    <h2 class="text-2xl font-bold text-white mb-4">Recently Played</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <app-music-card 
+        title="Chill Vibes" 
+        description="Relaxing music for focus"
+        imageUrl="https://picsum.photos/seed/1/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Workout Mix" 
+        description="High energy tracks"
+        imageUrl="https://picsum.photos/seed/2/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Night Drive" 
+        description="Late night music"
+        imageUrl="https://picsum.photos/seed/3/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Study Session" 
+        description="Focus beats"
+        imageUrl="https://picsum.photos/seed/4/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Morning Coffee" 
+        description="Start your day right"
+        imageUrl="https://picsum.photos/seed/5/300">
+      </app-music-card>
+    </div>
+  </section>
+
+  <!-- Made For You Section -->
+  <section class="mb-10">
+    <h2 class="text-2xl font-bold text-white mb-4">Made For You</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <app-music-card 
+        title="Discover Weekly" 
+        description="Your weekly music mix"
+        imageUrl="https://picsum.photos/seed/6/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Daily Mix 1" 
+        description="Ed Sheeran, Shawn Mendes and more"
+        imageUrl="https://picsum.photos/seed/7/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Daily Mix 2" 
+        description="The Weeknd, Drake and more"
+        imageUrl="https://picsum.photos/seed/8/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Release Radar" 
+        description="New releases from your favorites"
+        imageUrl="https://picsum.photos/seed/9/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Your Top Songs 2024" 
+        description="Your most played tracks"
+        imageUrl="https://picsum.photos/seed/10/300">
+      </app-music-card>
+    </div>
+  </section>
+
+  <!-- Popular Playlists Section -->
+  <section>
+    <h2 class="text-2xl font-bold text-white mb-4">Popular Playlists</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6">
+      <app-music-card 
+        title="Today's Top Hits" 
+        description="The biggest songs right now"
+        imageUrl="https://picsum.photos/seed/11/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="RapCaviar" 
+        description="New music from Kendrick and more"
+        imageUrl="https://picsum.photos/seed/12/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Rock Classics" 
+        description="Rock legends & epic songs"
+        imageUrl="https://picsum.photos/seed/13/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Jazz Vibes" 
+        description="Smooth jazz for any mood"
+        imageUrl="https://picsum.photos/seed/14/300">
+      </app-music-card>
+      
+      <app-music-card 
+        title="Electronic Party" 
+        description="EDM hits and dance music"
+        imageUrl="https://picsum.photos/seed/15/300">
+      </app-music-card>
+    </div>
+  </section>
+</div>
+
+<!-- Player at Bottom -->
+<app-player></app-player>

@@ -1,5 +1,9 @@
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/appsettings.Development.json
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/appsettings.json
+/home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/publish/appsettings.Development.json
+/home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/publish/appsettings.json
+/home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/publish/MusicService.deps.json
+/home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/publish/MusicService.runtimeconfig.json
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/MusicService
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/MusicService.deps.json
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/MusicService.runtimeconfig.json
@@ -23,6 +27,7 @@
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.Relational.dll
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/Microsoft.EntityFrameworkCore.SqlServer.dll
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/Microsoft.Extensions.DependencyModel.dll
+/home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/Microsoft.Identity.Client.dll
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/Microsoft.Identity.Client.Extensions.Msal.dll
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/Microsoft.IdentityModel.Abstractions.dll
@@ -124,6 +129,7 @@
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.csproj.CoreCompileInputs.cache
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.MvcApplicationPartsAssemblyInfo.cs
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.MvcApplicationPartsAssemblyInfo.cache
+/home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.sourcelink.json
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/staticwebassets.build.json
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/staticwebassets.development.json
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/staticwebassets/msbuild.MusicService.Microsoft.AspNetCore.StaticWebAssets.props
@@ -138,4 +144,3 @@
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.pdb
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.genruntimeconfig.cache
 /home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/ref/MusicService.dll
-/home/saad/music-platform/backend/MusicService/obj/Debug/net8.0/MusicService.sourcelink.json

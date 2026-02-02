@@ -1,9 +1,10 @@
-<h1>Spotify Songs</h1>
-<ul>
-  <li *ngFor="let song of songs">
-    <strong>{{ song.title }}</strong> by {{ song.artist }}
-    <audio *ngIf="song.blobUrl" controls>
-      <source [src]="song.blobUrl" type="audio/mpeg" />
-    </audio>
-  </li>
-</ul>
+<div class="song-grid">
+  <div class="song-card" *ngFor="let track of tracks">
+    <img [src]="track.album.images[0].url" alt="{{track.name}}" class="album-cover">
+    <div class="song-info">
+      <p class="song-name">{{ track.name }}</p>
+      <p class="artist-name">{{ track.artists[0].name }}</p>
+      <audio controls [src]="track.preview_url"></audio>
+    </div>
+  </div>
+</div>
