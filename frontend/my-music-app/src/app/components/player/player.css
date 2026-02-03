@@ -1,0 +1,48 @@
+:host {
+  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  background-color: #000000;
+  border-top: 1px solid #282828;
+  z-index: 1000;
+  padding: 0 20px;
+}
+
+/* Safe Slider Styling */
+input[type='range'] {
+  -webkit-appearance: none;
+  width: 100%;
+  background: transparent;
+}
+
+input[type='range']:focus {
+  outline: none;
+}
+
+/* The Track (Gray line) */
+input[type='range']::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: #4d4d4d;
+  border-radius: 2px;
+}
+
+/* The Knob (White dot) */
+input[type='range']::-webkit-slider-thumb {
+  height: 12px;
+  width: 12px;
+  border-radius: 50%;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -4px; /* Centers the knob */
+}
+
+/* Highlight the track when hovering */
+input[type='range']:hover::-webkit-slider-runnable-track {
+  background: #1db954; /* Green track on hover only */
+}

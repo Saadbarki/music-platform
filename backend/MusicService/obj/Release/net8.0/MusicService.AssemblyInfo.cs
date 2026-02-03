@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MusicService")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+530f3dc0e139fd6ba2b89cdb2fe23a0456a6ea5c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+cd6f9056e002224fdde2bd69eb6a36d98e31f266")]
 [assembly: System.Reflection.AssemblyProductAttribute("MusicService")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MusicService")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

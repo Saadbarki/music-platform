@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MusicService.Data;
 using MusicService.Models;
+using System.Text.RegularExpressions;
 
 namespace MusicService.Controllers
 {
@@ -9,45 +10,101 @@ namespace MusicService.Controllers
     public class SongsController : ControllerBase
     {
         private readonly MusicDbContext _context;
+        private readonly IWebHostEnvironment _environment;
 
-        public SongsController(MusicDbContext context)
+        public SongsController(MusicDbContext context, IWebHostEnvironment environment)
         {
             _context = context;
+            _environment = environment;
         }
 
         [HttpGet("all")]
         public IActionResult GetAllSongs()
         {
-            var songs = new List<Song>
+            var baseUrl = $"{Request.Scheme}://{Request.Host}";
+            var mp3sPath = Path.Combine(_environment.ContentRootPath, "mp3s");
+            
+            var songs = new List<Song>();
+            var id = 1;
+
+            if (Directory.Exists(mp3sPath))
             {
-                new Song { Id = 1, Title = "Song 1", Artist = "Artist 1", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(1).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 2, Title = "Song 2", Artist = "Artist 2", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(2).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 3, Title = "Song 3", Artist = "Artist 3", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(3).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 4, Title = "Song 4", Artist = "Artist 4", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(4).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 5, Title = "Song 5", Artist = "Artist 5", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(5).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 6, Title = "Song 6", Artist = "Artist 6", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(6).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 7, Title = "Song 7", Artist = "Artist 7", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(7).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 8, Title = "Song 8", Artist = "Artist 8", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(8).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 9, Title = "Song 9", Artist = "Artist 9", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(9).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 10, Title = "Song 10", Artist = "Artist 10", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(10).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 11, Title = "Song 11", Artist = "Artist 11", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(11).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 12, Title = "Song 12", Artist = "Artist 12", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(12).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 13, Title = "Song 13", Artist = "Artist 13", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(13).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 14, Title = "Song 14", Artist = "Artist 14", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(14).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 15, Title = "Song 15", Artist = "Artist 15", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(15).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 16, Title = "Song 16", Artist = "Artist 16", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(16).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 17, Title = "Song 17", Artist = "Artist 17", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(17).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 18, Title = "Song 18", Artist = "Artist 18", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(18).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 19, Title = "Song 19", Artist = "Artist 19", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(19).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 20, Title = "Song 20", Artist = "Artist 20", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(20).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 21, Title = "Song 21", Artist = "Artist 21", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(21).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 22, Title = "Song 22", Artist = "Artist 22", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(22).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 23, Title = "Song 23", Artist = "Artist 23", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(23).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 24, Title = "Song 24", Artist = "Artist 24", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(24).mp3", UploadedAt = DateTime.UtcNow },
-                new Song { Id = 25, Title = "Song 25", Artist = "Artist 25", BlobUrl = "https://musicplatformstorage.blob.core.windows.net/songs/1%20(25).mp3", UploadedAt = DateTime.UtcNow },
-            };
+                var mp3Files = Directory.GetFiles(mp3sPath, "*.mp3");
+                
+                foreach (var file in mp3Files.OrderBy(f => f))
+                {
+                    var fileName = Path.GetFileNameWithoutExtension(file);
+                    var (title, artist) = ParseFileName(fileName);
+                    
+                    songs.Add(new Song
+                    {
+                        Id = id++,
+                        Title = title,
+                        Artist = artist,
+                        BlobUrl = $"{baseUrl}/music/{Uri.EscapeDataString(Path.GetFileName(file))}",
+                        UploadedAt = System.IO.File.GetCreationTime(file)
+                    });
+                }
+            }
 
             return Ok(songs);
+        }
+
+        private (string title, string artist) ParseFileName(string fileName)
+        {
+            // Remove common patterns like "Official Audio", "Official Video", etc.
+            fileName = Regex.Replace(fileName, @"\(Official.*?\)", "", RegexOptions.IgnoreCase);
+            fileName = Regex.Replace(fileName, @"\[Official.*?\]", "", RegexOptions.IgnoreCase);
+            
+            // Try to split by common separators: -, |, ft., feat.
+            var separators = new[] { " - ", " | ", " ft. ", " ft ", " feat. ", " feat " };
+            
+            foreach (var separator in separators)
+            {
+                var parts = fileName.Split(new[] { separator }, StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length >= 2)
+                {
+                    return (parts[1].Trim(), parts[0].Trim());
+                }
+            }
+            
+            // If no separator found, check if it starts with artist name pattern
+            // Example: "BOHEMIA - Ek Tera Pyar" or "Karan Aujla - Song"
+            var match = Regex.Match(fileName, @"^([A-Z\s&]+)\s*-\s*(.+)$");
+            if (match.Success)
+            {
+                return (match.Groups[2].Value.Trim(), match.Groups[1].Value.Trim());
+            }
+            
+            // Default: entire filename as title
+            return (fileName.Trim(), "Unknown Artist");
+        }
+
+        [HttpPost("sync")]
+        public IActionResult SyncFromDownloads()
+        {
+            // This endpoint can be called to copy files from Windows Downloads/Songs
+            var sourcePath = "/mnt/c/Users/SAAD/Downloads/Songs";
+            var destPath = Path.Combine(_environment.ContentRootPath, "mp3s");
+            
+            try
+            {
+                if (Directory.Exists(sourcePath))
+                {
+                    var files = Directory.GetFiles(sourcePath, "*.mp3");
+                    foreach (var file in files)
+                    {
+                        var destFile = Path.Combine(destPath, Path.GetFileName(file));
+                        System.IO.File.Copy(file, destFile, overwrite: true);
+                    }
+                    return Ok(new { message = $"Synced {files.Length} files" });
+                }
+                return NotFound(new { message = "Source directory not found" });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new { message = ex.Message });
+            }
         }
     }
 }

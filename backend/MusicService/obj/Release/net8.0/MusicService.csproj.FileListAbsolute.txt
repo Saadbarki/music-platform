@@ -139,3 +139,4 @@
 /home/saad/music-platform/backend/MusicService/obj/Release/net8.0/MusicService.pdb
 /home/saad/music-platform/backend/MusicService/obj/Release/net8.0/MusicService.genruntimeconfig.cache
 /home/saad/music-platform/backend/MusicService/obj/Release/net8.0/ref/MusicService.dll
+/home/saad/music-platform/backend/MusicService/bin/Release/net8.0/Microsoft.Extensions.Diagnostics.HealthChecks.EntityFrameworkCore.dll

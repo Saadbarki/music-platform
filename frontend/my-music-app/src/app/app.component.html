@@ -1,6 +1,41 @@
-<div class="min-h-screen pb-24">
-  <h1 class="text-4xl font-bold text-center pt-20">My Music Platform</h1>
-  <p class="text-gray-400 text-center mt-4">Your custom music player</p>
+<div class="flex h-screen bg-black text-white overflow-hidden">
+  
+  <app-sidebar class="w-64 hidden md:block bg-black border-r border-gray-800"></app-sidebar>
+
+  <div class="flex-1 flex flex-col relative">
+    
+    <app-search-bar></app-search-bar>
+
+    <main class="flex-1 overflow-y-auto p-6 pb-32 custom-scrollbar">
+      
+      <header class="mb-8">
+        <h1 class="text-3xl font-bold tracking-tight">Your Music Library</h1>
+        <p class="text-gray-400 mt-1">Found {{ songs().length }} tracks in your collection</p>
+      </header>
+
+      <div *ngIf="loading()" class="flex flex-col items-center justify-center py-20">
+        <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-white mb-4"></div>
+        <p class="text-gray-400">Tuning your instruments...</p>
+      </div>
+
+      <div *ngIf="error()" class="bg-red-900/20 border border-red-500 p-4 rounded-lg text-red-500">
+        {{ error() }}
+      </div>
+
+      <div *ngIf="!loading() && !error()" 
+           class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6">
+        
+        <div *ngFor="let s of songs()" 
+             (click)="onSelectSong(s)" 
+             class="group transition-all duration-300 hover:bg-white/10 p-4 rounded-xl cursor-pointer">
+          
+          <app-music-card [song]="s"></app-music-card>
+          
+        </div>
+
+      </div>
+    </main>
+  </div>
 </div>
 
-<app-player></app-player>
+<app-player class="z-50"></app-player>

@@ -1,13 +1,25 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, inject } from '@angular/core';
+import { PlayerService } from '../../services/player.service';
+import { Song } from '../../services/music.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-music-card',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule],
   templateUrl: './music-card.html',
   styleUrl: './music-card.css',
 })
 export class MusicCard {
-  @Input() title: string = 'Song Title';
-  @Input() description: string = 'Artist Name';
-  @Input() imageUrl: string = 'https://via.placeholder.com/300';
+  // We use the Song object passed from the app.html loop
+  @Input() song?: Song;
+
+  private playerService = inject(PlayerService);
+
+  onPlay() {
+    if (this.song) {
+      // CHANGED: playSong -> setCurrentSong
+      this.playerService.setCurrentSong(this.song);
+    }
+  }
 }

@@ -1,9 +1,5 @@
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/appsettings.Development.json
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/appsettings.json
-/home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/publish/appsettings.Development.json
-/home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/publish/appsettings.json
-/home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/publish/MusicService.deps.json
-/home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/publish/MusicService.runtimeconfig.json
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/MusicService
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/MusicService.deps.json
 /home/saad/music-platform/backend/MusicService/bin/Debug/net8.0/MusicService.runtimeconfig.json
