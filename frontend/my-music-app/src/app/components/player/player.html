@@ -1,41 +1,43 @@
-<div class="fixed bottom-0 left-0 right-0 h-24 bg-[#121212] border-t border-[#282828] px-4 flex items-center justify-between z-50">
-  
-  <div class="flex items-center w-[30%] min-w-0">
-    <div class="w-14 h-14 bg-[#282828] rounded shadow-lg overflow-hidden flex-shrink-0">
-      <img *ngIf="playerService.currentSong()?.thumbnailUrl" 
-           [src]="playerService.currentSong()?.thumbnailUrl" 
-           class="w-full h-full object-cover">
-    </div>
-    <div class="ml-4 truncate">
-      <h4 class="text-white text-sm font-bold truncate">{{ playerService.currentSong()?.title || 'Select a song' }}</h4>
-      <p class="text-[#b3b3b3] text-xs truncate">{{ playerService.currentSong()?.artist || '...' }}</p>
-    </div>
-  </div>
-
-  <div class="flex flex-col items-center w-[40%] max-w-[600px]">
-    <div class="flex items-center space-x-6 mb-2">
-      <button class="text-[#b3b3b3] hover:text-white transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M8.445 14.832A1 1 0 0010 14v-2.798l5.445 3.63A1 1 0 0017 14V6a1 1 0 00-1.555-.832L10 8.798V6a1 1 0 00-1.555-.832l-7 7z"/></svg></button>
-      
-      <button (click)="playerService.togglePlayPause()" class="bg-white rounded-full p-2 hover:scale-105 transition">
-        <svg *ngIf="!playerService.isPlaying()" class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M6.3 2.841A1.5 1.5 0 004 4.11v11.78a1.5 1.5 0 002.3 1.269l9.344-5.89a1.5 1.5 0 000-2.538L6.3 2.841z"/></svg>
-        <svg *ngIf="playerService.isPlaying()" class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20"><path d="M5 4h3v12H5V4zm7 0h3v12h-3V4z"/></svg>
-      </button>
-
-      <button class="text-[#b3b3b3] hover:text-white transition"><svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"><path d="M11.555 14.832A1 1 0 0110 14v-2.798l-5.445 3.63A1 1 0 013 14V6a1 1 0 011.555-.832L10 8.798V6a1 1 0 011.555-.832l7 7z"/></svg></button>
+<div class="fixed bottom-0 left-0 right-0 h-24 bg-[#121212] border-t border-[#282828] z-50 flex justify-center">
+  <div class="w-full max-w-[1200px] flex items-center justify-between px-6">
+    
+    <div class="flex items-center w-64 min-w-0">
+      <div class="w-14 h-14 bg-[#282828] rounded flex-shrink-0 overflow-hidden">
+        <img [src]="playerService.currentSong()?.thumbnailUrl || 'https://api.dicebear.com/7.x/initials/svg?seed=Music'" 
+             class="w-full h-full object-cover">
+      </div>
+      <div class="ml-4 truncate">
+        <h4 class="text-white text-sm font-bold truncate">{{ playerService.currentSong()?.title || 'Waiting...' }}</h4>
+        <p class="text-[#b3b3b3] text-xs truncate">{{ playerService.currentSong()?.artist || 'Select a track' }}</p>
+      </div>
     </div>
 
-    <div class="w-full flex items-center space-x-2">
-      <span class="text-[10px] text-[#b3b3b3] min-w-[35px] text-right">{{ formatTime(playerService.currentTime()) }}</span>
-      <input type="range" class="flex-1 h-1 bg-[#4d4d4d] accent-white rounded-lg appearance-none cursor-pointer"
-             [max]="playerService.duration() || 100" [value]="playerService.currentTime()" (input)="onSeek($event)">
-      <span class="text-[10px] text-[#b3b3b3] min-w-[35px]">{{ formatTime(playerService.duration()) }}</span>
+    <div class="flex flex-col items-center flex-1 max-w-[500px]">
+      <div class="flex items-center space-x-8 mb-2">
+        <button (click)="playerService.previous()" class="text-[#b3b3b3] hover:text-white transition active:scale-90">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+        </button>
+        <button (click)="playerService.togglePlayPause()" class="bg-white rounded-full p-3 hover:scale-105 transition active:scale-95">
+          <svg *ngIf="!playerService.isPlaying()" class="w-7 h-7 text-black translate-x-0.5" fill="currentColor" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+          <svg *ngIf="playerService.isPlaying()" class="w-7 h-7 text-black" fill="currentColor" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+        </button>
+        <button (click)="playerService.next()" class="text-[#b3b3b3] hover:text-white transition active:scale-90">
+          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6zM16 6h2v12h-2z"/></svg>
+        </button>
+      </div>
+      <div class="w-full flex items-center space-x-2">
+        <span class="text-[10px] text-gray-500 font-mono">{{ formatTime(playerService.currentTime()) }}</span>
+        <input type="range" class="flex-1 h-1 bg-[#4d4d4d] accent-[#1db954] rounded-lg appearance-none cursor-pointer"
+               [max]="playerService.duration() || 100" [value]="playerService.currentTime()" (input)="onSeek($event)">
+        <span class="text-[10px] text-gray-500 font-mono">{{ formatTime(playerService.duration()) }}</span>
+      </div>
     </div>
-  </div>
 
-  <div class="flex items-center justify-end w-[30%] space-x-2">
-    <svg class="w-5 h-5 text-[#b3b3b3]" fill="currentColor" viewBox="0 0 20 20"><path d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.707.707L4.586 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.586l3.693-3.707a1 1 0 011.104-.217z"/></svg>
-    <input type="range" min="0" max="1" step="0.01" [value]="playerService.volume()" 
-           (input)="playerService.setVolume($any($event.target).value)"
-           class="w-24 h-1 bg-[#4d4d4d] accent-white rounded-lg appearance-none cursor-pointer">
+    <div class="flex items-center justify-end w-64 space-x-3">
+      <svg class="w-5 h-5 text-[#b3b3b3]" fill="currentColor" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
+      <input type="range" min="0" max="1" step="0.01" [value]="playerService.volume()" 
+             (input)="playerService.setVolume($any($event.target).value)"
+             class="w-24 h-1 bg-[#4d4d4d] accent-white rounded-lg appearance-none cursor-pointer">
+    </div>
   </div>
 </div>

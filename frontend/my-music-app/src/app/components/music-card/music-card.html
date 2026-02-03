@@ -1,17 +1,17 @@
 <div class="bg-[#181818] p-4 rounded-lg hover:bg-[#282828] transition duration-300 group relative shadow-md">
   <div class="relative mb-4">
-    <img [src]="song?.thumbnailUrl" 
-         [alt]="song?.title" 
+    <img [src]="song.thumbnailUrl || 'https://api.dicebear.com/7.x/initials/svg?seed=Music'"
+         [alt]="song.title"
          class="w-full aspect-square object-cover rounded-md shadow-lg bg-gray-800">
 
-    <button (click)="onPlay(); $event.stopPropagation()" 
-            class="absolute bottom-2 right-2 bg-green-500 p-3 rounded-full shadow-2xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 hover:scale-105 active:scale-95">
+    <button (click)="onPlay(); $event.stopPropagation()"
+            class="absolute bottom-2 right-2 bg-green-500 p-3 rounded-full shadow-2xl opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 active:scale-95">
       <svg class="w-6 h-6 text-black" fill="currentColor" viewBox="0 0 20 20">
         <path d="M6 4l10 6-10 6V4z"></path>
       </svg>
     </button>
   </div>
 
-  <h3 class="text-white font-bold truncate">{{ song?.title || 'Loading...' }}</h3>
-  <p class="text-gray-400 text-sm truncate">{{ song?.artist || 'Unknown Artist' }}</p>
+  <h3 class="text-white font-bold truncate">{{ song.title }}</h3>
+  <p class="text-gray-400 text-sm truncate">{{ song.artist }}</p>
 </div>

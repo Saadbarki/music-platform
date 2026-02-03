@@ -18,35 +18,37 @@ export class App implements OnInit {
   protected songs = signal<Song[]>([]);
   protected loading = signal(true);
   private musicService = inject(MusicService);
-  private playerService = inject(PlayerService);
+  protected playerService = inject(PlayerService); // Changed to protected to access in HTML if needed
 
   ngOnInit() {
+    this.loadSongs();
+  }
+
+  loadSongs() {
+    this.loading.set(true);
     this.musicService.getSongs().subscribe({
       next: (data) => {
-        // Add placeholder thumbnails without calling iTunes
-        const songsWithThumbnails = data.map(song => ({
-          ...song,
-          thumbnailUrl: this.getPlaceholderImage(song.id)
-        }));
-        
-        this.songs.set(songsWithThumbnails);
+        this.songs.set(data);
+        // Tell the player service about the current list of songs
+        this.playerService.setPlaylist(data);
         this.loading.set(false);
-        this.playerService.setPlaylist(songsWithThumbnails);
-        
-        if (songsWithThumbnails.length > 0) {
-          this.playerService.currentSong.set(songsWithThumbnails[0]);
-        }
       },
-      error: () => this.loading.set(false)
+      error: (err) => {
+        console.error('Failed to load songs', err);
+        this.loading.set(false);
+      }
     });
   }
 
-  private getPlaceholderImage(id: number): string {
-    // Use picsum for varied placeholder images
-    return `https://picsum.photos/seed/${id}/600`;
+  // This handles the Search Bar results
+  onSearchResults(results: Song[]) {
+    this.songs.set(results);
+    // Update playlist so "Next" works with search results
+    this.playerService.setPlaylist(results);
   }
 
-  onSelectSong(song: Song) {
-    this.playerService.setCurrentSong(song);
+  onSongSelect(song: Song) {
+    // FIX: Calling 'play' instead of 'setCurrentSong'
+    this.playerService.play(song);
   }
 }
