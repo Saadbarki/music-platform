@@ -15,7 +15,7 @@ export interface Song {
 @Injectable({ providedIn: 'root' })
 export class MusicService {
   private http = inject(HttpClient);
-  private apiUrl = 'https://musicservice-api.azurewebsites.net/api/songs';
+  private apiUrl = 'https://musicservice-api-fkgycte4gufeh6az.canadacentral-01.azurewebsites.net/api/songs';
   getSongs() {
     return this.http.get<Song[]>(`${this.apiUrl}/all`).pipe(
       map((songs) => songs.map(song => ({

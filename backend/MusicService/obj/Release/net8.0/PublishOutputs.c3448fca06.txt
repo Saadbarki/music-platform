@@ -1,10 +1,6 @@
 /home/saad/music-platform/backend/MusicService/publish/MusicService
 /home/saad/music-platform/backend/MusicService/publish/appsettings.Development.json
 /home/saad/music-platform/backend/MusicService/publish/appsettings.json
-/home/saad/music-platform/backend/MusicService/publish/publish/appsettings.Development.json
-/home/saad/music-platform/backend/MusicService/publish/publish/appsettings.json
-/home/saad/music-platform/backend/MusicService/publish/publish/MusicService.deps.json
-/home/saad/music-platform/backend/MusicService/publish/publish/MusicService.runtimeconfig.json
 /home/saad/music-platform/backend/MusicService/publish/MusicService.dll
 /home/saad/music-platform/backend/MusicService/publish/MusicService.runtimeconfig.json
 /home/saad/music-platform/backend/MusicService/publish/MusicService.pdb
