@@ -18,7 +18,7 @@ export class MusicService {
   private apiUrl = 'https://musicservice-api-fkgycte4gufeh6az.canadacentral-01.azurewebsites.net/api/songs';
 
   getSongs() {
-    return this.http.get<Song[]>(`${this.apiUrl}/all`).pipe(
+    return this.http.get<Song[]>(this.apiUrl).pipe(
       map((songs: Song[]) => songs.map(song => ({
         ...song,
         url: song.blobUrl
